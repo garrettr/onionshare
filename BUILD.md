@@ -33,19 +33,32 @@ To install the right dependencies, you need homebrew and pip installed on your M
 
 The first time you're setting up your dev environment:
 
+Go to [Qt's download page](http://qt-project.org/downloads) and download and install "Qt libraries 4.8.6 for Mac". You have to click "Show Downloads" to see it.
+
+Go to http://www.riverbankcomputing.co.uk/software/pyqt/download and download the Mac OS X source code. I donwnloaded `PyQt-mac-gpl-4.11.tar.gz`. Then compile and install it:
+
+```sh
+cd ~/Downloads
+tar -xvf PyQt-mac-gpl-4.11.tar.gz
+cd PyQt-mac-gpl-4.11
+python configure-ng.py
+# you'll have to type "yes" to accept the open source license
+make
+sudo make install
+```
+
+Then set up the clone the git repo, create a virtualenv, and install some more dependencies into it:
+
 ```sh
 git clone https://github.com/micahflee/onionshare.git
 cd onionshare
-echo export PYTHONPATH=\$PYTHONPATH:/usr/local/lib/python2.7/site-packages/ >> ~/.profile
-source ~/.profile
-brew install qt4 pyqt
 sudo pip install virtualenv
 virtualenv env
 . env/bin/activate
 pip install flask stem pyinstaller
 ```
 
-Each time you start work:
+Each time you start work you need to start the virtualenv again:
 
 ```sh
 . env/bin/activate
